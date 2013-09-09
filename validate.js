@@ -235,5 +235,11 @@ function validateGeoJSON(obj, toplevel) {
 	return validateGeometry(obj, toplevel);
 }
 
-
+if( typeof module != 'undefined' ) {
+    module.exports = function(json) {
+	if( validateGeoJSON(json, true) )
+	    return false;
+	return true;
+    }
+}
 

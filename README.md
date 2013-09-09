@@ -59,4 +59,16 @@ This project includes a simple validator that can be run using Node.js:
 $ node validate.js indoor-example.json
 ```
 
+or used within another Node.js program like this:
+
+```javascript
+var jsonobj = { type: 'Point', geometry: [ 10, 20 ] };
+var validateIndoorJSON = require('indoor-json');
+if( validateIndoorJSON(jsonobj) ) {	
+    // validated       
+}			      
+```
+
+In fact, it can also be used in any browser-side JavaScript as well.
+
 Because all GeoJSON files are also valid IndoorJSON files, this can be used as a generic GeoJSON validator as well.
