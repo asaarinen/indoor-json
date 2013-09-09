@@ -218,7 +218,7 @@ function validateFeature(feat, toplevel) {
 	} else
 	    return 'invalid feature type ' + feat.type;
     } else
-	return 'invalid feature ' + JSON.stringify(feat).substring(0, 50);
+	return 'invalid feature';
 }
 
 function validateGeoJSON(obj, toplevel) {
