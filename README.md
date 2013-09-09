@@ -48,6 +48,8 @@ Features with `LineString` geometry type may have the following properties:
 
 For `connector` features, the `level` property is interpreted as the level of the level above. The level below is interpreted to be `level - 1`. If a `connector` feature has a `level` property that equals the lowest level in the file, that connector is not accessible.
 
+Of course, typically IndoorJSON features also have other properties, like store names, descriptions, phone numbers, etc.
+
 Validation
 ==
 
