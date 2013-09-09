@@ -58,3 +58,5 @@ This project includes a simple validator that can be run using Node.js:
 ```
 $ node validate.js indoor-example.json
 ```
+
+Because all GeoJSON files are also valid IndoorJSON files, this can be used as a generic GeoJSON validator as well.
