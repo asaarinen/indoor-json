@@ -10,12 +10,12 @@ if( typeof process != 'undefined' ) {
 	var json = JSON.parse(require('fs').readFileSync
 			      (process.argv[2]).toString('utf8'));
     } catch(err) {
-	process.stderr.write('invalid JSON at ' + process.argv[2]);
+	process.stderr.write('invalid JSON at ' + process.argv[2] + '\n');
 	process.exit(1);
 	return;
     }
 
-    var res = validateGeoJSON(json);
+    var res = validateGeoJSON(json, true);
     if( res ) {
 	process.stderr.write('invalid GeoJSON: ' + res + '\n');
 	process.exit(1);
@@ -30,11 +30,12 @@ function validateCoords(c) {
 	return res;
     if( c.length < 2 )
 	return 'not enough coordinates';
-    if( typeof c[0] != 'number' ||
-	typeof c[1] != 'number' )
-	return 'non-number coordinates';
-    if( isNaN(c[0]) || isNaN(c[1]) )
-	return 'NaN coordinates';
+    for( var ci = 0; ci < c.length; ci++ ) {
+	if( typeof c[ci] != 'number' ) 
+	    return 'non-number coordinates';
+	if( isNaN(c[ci]) )
+	    return 'NaN coordinates';
+    }
     return null;
 }
 
@@ -103,15 +104,15 @@ function validateGeometry(geom, toplevel) {
 	    var res = validateCoords(geom.coordinates);
 	    if( res ) 
 		return res;
-	} else if( geom.type != 'MultiPoint' ||
-		   geom.type != 'LineString' ) {
+	} else if( geom.type == 'MultiPoint' ||
+		   geom.type == 'LineString' ) {
 	    for( var gi = 0; gi < geom.coordinates.length; gi++ ) {
 		var res = validateCoords(geom.coordinates[gi]);
 		if( res )
 		    return res;
 	    }
-	} else if( geom.type != 'MultiLineString' ||
-		   geom.type != 'Polygon' ) {
+	} else if( geom.type == 'MultiLineString' ||
+		   geom.type == 'Polygon' ) {
 	    for( var pi = 0; pi < geom.coordinates.length; pi++ ) {
 		var res = validateArray(geom.coordinates[pi]);
 		if( res )
@@ -122,7 +123,7 @@ function validateGeometry(geom, toplevel) {
 			return res;
 		}	    
 	    }
-	} else if( geom.type != 'MultiPolygon' ) {
+	} else if( geom.type == 'MultiPolygon' ) {
 	    for( var ppi = 0; ppi < geom.coordinates.length; ppi++ ) {
 		var res = validateArray(geom.coordinates[ppi]);
 		if( res )
@@ -220,7 +221,7 @@ function validateFeature(feat, toplevel) {
 	return 'invalid feature ' + JSON.stringify(feat).substring(0, 50);
 }
 
-function validateObject(obj, toplevel) {
+function validateGeoJSON(obj, toplevel) {
     if( obj == null )
 	return 'null object';
     if( typeof obj != 'object' )
@@ -232,10 +233,6 @@ function validateObject(obj, toplevel) {
 	return validateFeature(obj, toplevel);
     else 
 	return validateGeometry(obj, toplevel);
-}
-
-function validateGeoJSON(json) {
-    return validateFeature(json, true);
 }
 
 
