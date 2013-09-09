@@ -11,7 +11,10 @@
     "keywords": [
 	"indoorjson",
 	"geojson",
-	"validator"
+	"indoorjson validator",
+	"geojson validator",
+	"indoorjson lint",
+	"geojson lint"
     ],
     "license": "MIT",
     "readmeFilename": "README.md",
