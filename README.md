@@ -36,9 +36,9 @@ Each IndoorJSON Feature MAY have the following properties:
 
 - `geomType`: an object containing additional information for the visualization of the geometry. This could be for instance specifying whether the geometry is a pillar (for `Point` geometries), a wall, doorway, window or railing (for `LineString` geometries), or a regular floor, blocked area or hole (for `Polygon` geometries), or a elevator, stairway or escalator (for `LineString` geometries with `connector` property).
 
-Features with `LineString` or `MultiLineString` geometry type may have the following properties:
+Features with `Point`, `MultiPoint`, `LineString` or `MultiLineString` geometry type may have the following properties:
 
-- `accessible`: a boolean value indicating whether the line is accessible e.g. if it can be walked through. If not present, defaults to `false`.
+- `accessible`: a boolean value indicating whether the point or line is accessible e.g. if it can be walked through. If not present, defaults to `false`.
 
 Features with `LineString` geometry type may have the following properties:
 
