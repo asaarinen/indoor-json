@@ -1,20 +1,20 @@
 {
     "name": "indoor-json",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "IndoorJSON specification and validator",
     "main": "validate.js",
     "repository": {
-	"type": "git",
-	"url": "https://github.com/asaarinen/indoor-json.git"
+        "type": "git",
+        "url": "https://github.com/asaarinen/indoor-json.git"
     },
     "author": "Antti Saarinen <antti.p.saarinen@gmail.com>",
     "keywords": [
-	"indoorjson",
-	"geojson",
-	"indoorjson validator",
-	"geojson validator",
-	"indoorjson lint",
-	"geojson lint"
+        "indoorjson",
+        "geojson",
+        "indoorjson validator",
+        "geojson validator",
+        "indoorjson lint",
+        "geojson lint"
     ],
     "license": "MIT",
     "readmeFilename": "README.md",

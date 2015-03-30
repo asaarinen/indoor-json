@@ -55,13 +55,7 @@ Validation
 
 All valid GeoJSON files are also valid IndoorJSON files. 
 
-This project includes a simple validator that can be run using Node.js:
-
-```
-$ node validate.js indoor-example.json
-```
-
-or used within another Node.js program like this:
+This project includes a simple validator that can be used within a Node.js program like this:
 
 ```javascript
 var jsonobj = { type: 'Point', geometry: [ 10, 20 ] };
